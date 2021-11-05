@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
-    const { cardName,
+    const {
+      cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
