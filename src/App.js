@@ -18,17 +18,15 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
     };
     this.onInputChange = this.onInputChange.bind(this);
-    this.onSaveButtonClick = this.onSaveButtonClick(this);
   }
 
   // React não permite fazer comparação com números, então tivemos que guardar o número em uma variável
-  onInputChange({ target: { name, value, type, checked } }) {
+  onInputChange({ target: { id, value, type, checked } }) {
     value = type === 'checkbox' ? checked : value;
-    this.setState({ [name]: value });
+    this.setState({ [id]: value });
 
     const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
     const values = Object.values(this.state);
-    console.log(values);
     const magicNumber = 90;
     const magicNumber2 = 210;
     const soma = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
@@ -42,9 +40,11 @@ class App extends React.Component {
     }
   }
 
-  onSaveButtonClick(event) {
-    event.preventDefault();
-  }
+  // onSaveButtonClick(event) {
+  //   event.preventDefault();
+  // }
+
+  onSaveButtonClick = (event) => event.preventDefault();
 
   render() {
     const {
@@ -56,7 +56,8 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      hasTrunfo } = this.state;
+      hasTrunfo,
+      isSaveButtonDisabled } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
