@@ -23,28 +23,30 @@ class App extends React.Component {
   // React não permite fazer comparação com números, então tivemos que guardar o número em uma variável
   onInputChange({ target: { id, value, type, checked } }) {
     value = type === 'checkbox' ? checked : value;
-    this.setState({ [id]: value });
-
-    const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
-    const values = Object.values(this.state);
-    const magicNumber = 90;
-    const magicNumber2 = 210;
-    const soma = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
-
-    if (values.some((data) => data === '' || data > magicNumber || data < 0)) {
-      this.setState({ isSaveButtonDisabled: true });
-    } else if (soma > magicNumber2) {
-      this.setState({ isSaveButtonDisabled: true });
-    } else {
-      this.setState({ isSaveButtonDisabled: false });
-    }
+    this.setState({ [id]: value }, () => {
+      const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
+      const values = Object.values(this.state);
+      const magicNumber = 90;
+      const magicNumber2 = 210;
+      const soma = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+      if (values.some((data) => data === '' || data > magicNumber || data < 0)) {
+        this.setState({ isSaveButtonDisabled: true });
+      } else if (soma > magicNumber2) {
+        this.setState({ isSaveButtonDisabled: true });
+      } else {
+        this.setState({ isSaveButtonDisabled: false });
+      }
+    });
   }
 
   // onSaveButtonClick(event) {
   //   event.preventDefault();
   // }
 
-  onSaveButtonClick = (event) => event.preventDefault();
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    console.log('passei no onbutton click');
+  }
 
   render() {
     const {
@@ -62,8 +64,9 @@ class App extends React.Component {
       <div>
         <h1>Tryunfo</h1>
         <Form
-          onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
