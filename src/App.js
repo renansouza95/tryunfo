@@ -46,6 +46,12 @@ class App extends React.Component {
     ));
   }
 
+  // deleteCard = () => {
+  //   const { deck } = this.state;
+  //   deck.reduce((acc, crr) => {
+  //   });
+  // }
+
   onSaveButtonClick = (event) => {
     event.preventDefault();
     const {
@@ -99,6 +105,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       hasTrunfo,
+      deck,
       isSaveButtonDisabled } = this.state;
     return (
       <div>
@@ -127,7 +134,25 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
+          preview
         />
+        <div className="deck">
+          {deck.map((card) => (
+            <Card
+              key={ card.cardName }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+              hasTrunfo={ card.hasTrunfo }
+              preview={ false }
+            />
+          ))}
+        </div>
       </div>
     );
   }

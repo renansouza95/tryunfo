@@ -3,35 +3,38 @@ import PropTypes from 'prop-types';
 
 class Card extends React.Component {
   render() {
-    const { cardName,
+    const {
+      cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo } = this.props;
+      cardTrunfo,
+      // preview,
+    } = this.props;
     return (
       <div>
-        <h2 data-testid="name-card">{ cardName }</h2>
+        <h2 data-testid="name-card">{cardName}</h2>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-        <p data-testid="description-card">{ cardDescription }</p>
+        <p data-testid="description-card">{cardDescription}</p>
         <div>
           <p data-testid="attr1-card">
             Atttr01..................
-            { cardAttr1 }
+            {cardAttr1}
           </p>
           <p data-testid="attr2-card">
             Attr02..................
-            { cardAttr2 }
+            {cardAttr2}
           </p>
           <p data-testid="attr3-card">
             Attr03..................
-            { cardAttr3 }
+            {cardAttr3}
           </p>
         </div>
-        <span data-testid="rare-card">{ cardRare }</span>
-        { cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null }
+        <span data-testid="rare-card">{cardRare}</span>
+        {cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null}
       </div>
     );
   }
@@ -46,6 +49,7 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  // preview: PropTypes.bool.isRequired,
 };
 
 export default Card;
